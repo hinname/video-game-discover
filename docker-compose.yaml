@@ -1,0 +1,7 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - 8080:80
+    volumes:
+      - ./backend:/app:Z
