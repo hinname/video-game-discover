@@ -10,5 +10,5 @@ func main() {
 		fmt.Fprintf(w, "Hello, you've requested: %s\n", r.URL.Path)
 	})
 
-	http.ListenAndServe(":80", nil)
+	log.Fatal(http.ListenAndServe(":80", nil))
 }

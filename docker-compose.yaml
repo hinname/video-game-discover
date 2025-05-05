@@ -1,0 +1,15 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - 8080:80
+    volumes:
+      - ./backend:/app:Z
+  frontend:
+    build: ./frontend
+    command: ["npm", "run", "dev"]
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app:Z
+      - ./frontend/node_modules:/app/node_modules
