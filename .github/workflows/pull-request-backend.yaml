@@ -22,13 +22,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: ${{ matrix.go-version }}
-      - name: Install dependencies
-        run: go get .
-      - name: Build
-        run: go build -v ./...
-      - name: Test with the Go CLI
-        run: go test
+      - name: Build Docker image
+        run: docker build -t video-game-discover-backend .
+      - name: Run tests
+        run: docker run --rm video-game-discover-backend go test -v ./...
