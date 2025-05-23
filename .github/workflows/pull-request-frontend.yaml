@@ -1,0 +1,38 @@
+name: Pull Request Frontend Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+    paths:
+      - 'frontend/**'
+jobs:
+  build:
+    name: Build and Test Frontend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    strategy:
+      matrix:
+        node-version: ['22.x']
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm install
+      - name: Build the project
+        run: npm run build
+      - name: Run tests
+        run: npm run test
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: Jest-results-${{ matrix.node-version }}
+  
