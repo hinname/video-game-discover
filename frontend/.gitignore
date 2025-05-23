@@ -20,5 +20,8 @@ logs
 
 # Local env files
 .env
-.env.*
+.env*.local
 !.env.example
+
+# Playwright
+/test-results
