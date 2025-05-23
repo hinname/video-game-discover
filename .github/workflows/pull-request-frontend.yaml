@@ -1,0 +1,28 @@
+name: Pull Request Frontend Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+    paths:
+      - 'frontend/**'
+jobs:
+  build:
+    name: Build and Test Frontend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    strategy:
+      matrix:
+        node-version: ['22.x']
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker image
+        run: docker build -t video-game-discover-frontend .
+      - name: Run tests
+        run: docker run --rm video-game-discover-frontend npm run test
+  

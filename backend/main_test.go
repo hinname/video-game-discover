@@ -10,7 +10,7 @@ import (
 
 func TestRootHandler(t *testing.T) {
 	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, you've requested: %s\n", r.URL.Path)
+		fmt.Fprintf(w, "Hello, you've requesteds: %s\n", r.URL.Path)
 	})
 
 	testServer := httptest.NewServer(handler)
@@ -26,19 +26,19 @@ func TestRootHandler(t *testing.T) {
 		{
 			name:     "root path",
 			path:     "/",
-			wantBody: "Hello, you've requested: /\n",
+			wantBody: "Hello, you've requesteds: /\n",
 			wantCode: http.StatusOK,
 		},
 		{
 			name:     "nested path",
 			path:     "/test/path",
-			wantBody: "Hello, you've requested: /test/path\n",
+			wantBody: "Hello, you've requesteds: /test/path\n",
 			wantCode: http.StatusOK,
 		},
 		{
 			name:     "empty path",
 			path:     "",
-			wantBody: "Hello, you've requested: /\n",
+			wantBody: "Hello, you've requesteds: /\n",
 			wantCode: http.StatusOK,
 		},
 	}

@@ -1,0 +1,28 @@
+name: Pull Request Backend Workflow
+
+on: 
+  pull_request:
+    branches:
+      - main
+      - dev
+    paths:
+      - 'backend/**'
+
+jobs:
+  build:
+    name: Build and Test Backend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+
+    strategy:
+      matrix:
+        go-version: ['1.24.x']
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker image
+        run: docker build -t video-game-discover-backend .
+      - name: Run tests
+        run: docker run --rm video-game-discover-backend go test -v ./...
