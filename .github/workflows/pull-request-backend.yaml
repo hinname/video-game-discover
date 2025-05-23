@@ -1,11 +1,19 @@
 name: Pull Request Backend Workflow
 
-on: [pull_request]
+on: 
+  pull_request:
+    branches:
+      - main
+      - dev
 
 jobs:
   build:
-
+    name: Build and Test Backend
     runs-on: ubuntu-latest
+    defaults:
+      runs:
+        working-directory: ./backend
+
     strategy:
       matrix:
         go-version: ['1.24.x']
