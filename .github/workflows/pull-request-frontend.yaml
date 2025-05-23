@@ -33,8 +33,4 @@ jobs:
         run: npm run build
       - name: Run tests
         run: npm run test
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
-        with:
-          name: Jest-results-${{ matrix.node-version }}
   

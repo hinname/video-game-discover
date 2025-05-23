@@ -1,5 +1,5 @@
 <template>
   <div>
-    Home 12
+    Home 1
   </div>
 </template>>
