@@ -26,19 +26,19 @@ func TestRootHandler(t *testing.T) {
 		{
 			name:     "root path",
 			path:     "/",
-			wantBody: "Hello, you've requested: /\n",
+			wantBody: "Hello, you've requesteds: /\n",
 			wantCode: http.StatusOK,
 		},
 		{
 			name:     "nested path",
 			path:     "/test/path",
-			wantBody: "Hello, you've requested: /test/path\n",
+			wantBody: "Hello, you've requesteds: /test/path\n",
 			wantCode: http.StatusOK,
 		},
 		{
 			name:     "empty path",
 			path:     "",
-			wantBody: "Hello, you've requested: /\n",
+			wantBody: "Hello, you've requesteds: /\n",
 			wantCode: http.StatusOK,
 		},
 	}
