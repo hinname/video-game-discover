@@ -21,16 +21,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install dependencies
-        run: npm install
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-      - name: Build the project
-        run: npm run build
+      - name: Build Docker image
+        run: docker build -t video-game-discover-frontend .
       - name: Run tests
-        run: npm run test
+        run: docker run --rm video-game-discover-frontend npm run test
   
